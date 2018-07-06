@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"></constant>
+
+    <package name="basePackage" namespace="/" extends="struts-default">
+
+        <action name="studentAction-*" class="studentAction" method="{1}">
+            <result name="add">/views/result.jsp</result>
+            <result name="all">/views/listAllStudents.jsp</result>
+            <allowed-methods>add,listAll</allowed-methods>
+        </action>
+    </package>
+</struts>

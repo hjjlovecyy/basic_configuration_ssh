@@ -1,0 +1,13 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.hjj.pojo">
+    <class name="org.hjj.pojo.Student" table="STUDENTS" catalog="SSH">
+        <id name="id" column="STUDENT_ID">
+            <generator class="increment" />
+        </id>
+
+        <property name="studentName" column="STUDENT_NAME" />
+    </class>
+</hibernate-mapping>

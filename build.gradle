@@ -1,0 +1,69 @@
+group 'org.hjj'
+version '1.0'
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:2.0.0'
+    }
+}
+
+if (!project.plugins.findPlugin(org.akhikhl.gretty.GrettyPlugin))
+    project.apply(plugin: org.akhikhl.gretty.GrettyPlugin)
+
+dependencies {
+    compile (
+            'org.apache.struts:struts2-core:2.5.16',
+            'org.apache.struts:struts2-spring-plugin:2.5.16',
+            'org.springframework:spring-context:5.0.0.RELEASE',
+            'org.springframework:spring-web:5.0.0.RELEASE',
+            'org.springframework:spring-orm:5.0.0.RELEASE',
+            'org.springframework:spring-webmvc:5.0.0.RELEASE',
+            'org.hibernate:hibernate-core:5.2.12.Final',
+            'mysql:mysql-connector-java:5.1.38',
+            'org.apache.commons:commons-dbcp2:2.4.0'
+    )
+}
+
+gretty {
+    httpEnabled = true
+    servletContainer = 'tomcat8'
+    contextPath = '/application'
+    host = 'localhost'
+    httpPort = 8080
+    scanInterval = 1
+    fastReload = true
+    inplaceMode = 'soft'
+    loggingLevel = 'DEBUG'
+    consoleLogEnabled = true
+
+    // 调试需要
+     debugPort = 6005
+     debugSuspend = true
+}
